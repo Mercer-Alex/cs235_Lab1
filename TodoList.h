@@ -3,17 +3,30 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <vector>
 #include "TodoListInterface.h"
 
 using namespace std;
 
 class TodoList: public TodoListInterface {
 public:
+    vector <string> tasks;
     TodoList() {
         cout << "In Constructor" << endl;
+        ifstream infile ("TODO.txt");
+        string line;
+        if (infile.is_open()) {
+            while (getline(infile, line)) {
+                cout << line << endl;
+                tasks.push_back(line);
+            }
+            infile.close();
+        }
     }
     virtual ~TodoList() {
         cout << "In Destructor" << endl;
+        
     }
     /*
     *   Adds an item to the todo list with the data specified by the string _duedate" and the task specified by "_task"
