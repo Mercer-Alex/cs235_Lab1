@@ -14,7 +14,7 @@ public:
     vector <string> tasks;
     TodoList() {
         cout << "In Constructor" << endl;
-        ifstream infile ("TODO.txt");
+        ifstream infile ("TODOList.txt");
         string line;
         if (infile.is_open()) {
             while (getline(infile, line)) {
@@ -26,13 +26,17 @@ public:
     }
     virtual ~TodoList() {
         cout << "In Destructor" << endl;
-        
+        ofstream outfile;
+        outfile.open("TODOlist.txt", ofstream::out | ofstream::trunc);
+        for(int i = 0; i < tasks.size(); ++i) {
+            cout << tasks[i] << endl;
+            outfile << tasks[i] << endl;
+        }
+        outfile.close();
     }
-    /*
-    *   Adds an item to the todo list with the data specified by the string _duedate" and the task specified by "_task"
-    */
     virtual void add(string _duedate, string _task) {
-        cout << "In add" << endl;
+        tasks.push_back(_duedate + " " + _task);
+        cout << "In add " << _duedate << " " << _task << endl;
     }
     /*
     *   Removes an item from the todo list with the specified task name
@@ -41,13 +45,18 @@ public:
     */
     virtual int remove(string _task) {
         cout << "In remove" << endl;
+        for (int i = 0; i < tasks.size(); ++i) {
+            if (tasks[i] == _task) {
+                tasks.erase(tasks.begin() + i + 1);
+            }
+        }
         return 1;
     }
-    /*
-    *   Prints out the full todo list to the console
-    */
     virtual void printTodoList() {
         cout << "In list" << endl;
+        for (int i = 0; i < tasks.size(); ++i) {
+            cout << tasks[i] << " " << endl;
+        }
     }
     /*
     *   Prints out all items of a todo list with a particular due date (specified by _duedate)
