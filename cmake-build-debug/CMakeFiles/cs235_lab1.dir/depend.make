@@ -3,7 +3,9 @@
 
 CMakeFiles/cs235_lab1.dir/TodoList.cpp.obj: \
  ../TodoList.cpp \
- ../TodoList.h
+ ../TodoList.h \
+ ../TodoListInterface.h
 CMakeFiles/cs235_lab1.dir/main.cpp.obj: \
  ../TodoList.h \
+ ../TodoListInterface.h \
  ../main.cpp

@@ -26,13 +26,12 @@ int main(int argc, char *argv[]) {
             cout << "Printing" << endl;
             mylist.printTodoList();
         }
+        if (command == "printDay") {
+            cout << "Printing day" << endl;
+            string day = argv[2];
+            mylist.printDaysTasks(day);
+        }
     }
-
-    for(int i = 0; i <argc; i++) {
-        cout << "argv[" << i << "]=" << argv[i] << endl;
-    //}
-
-
 
     return 0;
 }
